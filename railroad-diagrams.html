@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+<p>
+<script src="https://moodle.cs.msu.ru/pluginfile.php/2576/mod_resource/content/2/railroad-diagrams.js" type="text/javascript"></script>
+</p>
+<p><link href="https://moodle.cs.msu.ru/pluginfile.php/2577/mod_resource/content/1/railroad-diagrams.css" rel="stylesheet" /></p>
+<h4>Пример метаязыка для построения СД.</h4>
+<table>
+<tbody>
+<tr>
+<td>
+<p><textarea id="itsalltext_generated_id__1" class="SD-input" cols="32" rows="20">Diagram(
+  Optional('+', 'skip'),
+  Choice(0, 
+    NonTerminal('name-start char'), 
+    NonTerminal('escape')),
+    ZeroOrMore(
+      Choice(0, 
+        NonTerminal('name char'), 
+	NonTerminal('escape'))))</textarea></p>
+</td>
+<td>
+<h4><a href="https://github.com/tabatkins/railroad-diagrams"> Правила метаязыка</a></h4>
+<h5>Элементы</h5>
+<ul>
+<li><code>Terminal(text, href)</code> или строка — лексема. Необязательный параметр <code>href</code> — гиперссылка.</li>
+<li><code>NonTerminal(text, href)</code> — термин. Необязательный параметр  <code>href</code> — гиперссылка.</li>
+<li><code>Comment(text)</code> — комментарий.</li>
+<li><code>Skip()</code> — пустой элемент (линия); используется для выбора с пустым</li>
+</ul>
+<h5>Контейнеры</h5>
+<p>Параметр children — это один или несколько параметров через запятую.</p>
+<ul>
+<li><code>Sequence(children)</code> — последовательность</li>
+<li><code>Choice(index, children)</code> — альтернатива. Параметр <code>index</code> определяет, какая из альтернатив отобразится посередине (остальные будут сверху и снизу)</li>
+<li><code>Optional(child)</code> — Сокращение от  <code>Choice(1, [Skip(), child])</code>. Если добавить второй параметр (строку "skip"), пустой вариант окажется посередине</li>
+<li><code>OneOrMore(child, repeat)</code> — повторение один или более раз. Необязательный параметр <code>repeat</code> задаёт разделитель</li>
+<li><code>ZeroOrMore(child, repeat)</code> — сокращение от <code>Optional(OneOrMore(child, repeat))</code>. Если добавить третий параметр (строку "skip"), пустой вариант окажжется посередине</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="SD-output-image"></div>
+<p>HTML-код для вставки:</p>
+<p><textarea id="itsalltext_generated_id__2" class="SD-output-text" cols="64">HTML-код для вставки</textarea></p>
+<p>
+<script type="text/javascript">// <![CDATA[
+window.find = document.querySelector.bind(document);
+
+find('.SD-input').addEventListener('input', process, false);
+
+window.addEventListener('load', process, false);
+
+function process() {
+	var input = find('.SD-input').value;
+	try {
+		var result = eval(input).format();
+	} catch (e) {
+		return;
+	}
+	find('.SD-output-image').innerHTML = '';
+	result.addTo(find('.SD-output-image'));
+	find('.SD-output-text').textContent = result;
+	//find('.SD-output-text').textContent = '<img src="data:image/svg;base64,' + window.btoa(result) + '"/>';
+}
+// ]]></script>
+</p>
+</body>
+</html>

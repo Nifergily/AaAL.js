@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+<script src="NAM.js" type="text/javascript"></script>
+<table>
+<tbody>
+<tr valign="top">
+<td>Входное (выходное) слово:<br /> <input id="Word" type="text" /> <br /> Правила (не более 32):<br />
+<table style="border: 1px; border-style: solid;">
+<tbody>
+<tr valign="top">
+<td><textarea id="CodeArea" rows="20" cols="15"></textarea></td>
+<td id="ParsedCode" align="left" width="125px"></td>
+</tr>
+</tbody>
+</table>
+<input class="ef" value="Шаг" onclick="Step()" type="button" /> <input class="ef" value="Запуск" onclick="Run()" type="button" /> <br /> <textarea id="ErrorMsg" readonly="readonly" cols="32"></textarea><br /> Шагов — не более 1000.</td>
+<td align="left">
+<p><b>Пример 1.</b> В произвольном слове <strong>P</strong>, состоящем из букв алфавита <strong>A=<span class="Serif">{<i>a</i>, <i>b</i>, <i>c</i>}</span></strong>, все подряд стоящие одинаковые буквы заменить одной буквой (например, слово «<strong>abbbcaa</strong>» преобразовать в «<strong>abca</strong>»).<br /> <a onclick="LoadAlg ('abbbcaa', 'aa-&gt;a\nbb-&gt;b\ncc-&gt;c');">загрузить решение в эмулятор</a></p>
+<p><strong>Пример 2. А={a,b,*}</strong>, <strong>P = *Q</strong>, где <strong>Q </strong>– произвольное слово из алфавита <strong>{a,b}</strong>. Получить <strong>Q*</strong> (переставить <strong>*</strong> в конец слова).<br /> <a onclick="LoadAlg ('*abaab', '*a-&gt;a*\n*b-&gt;b*');">загрузить решение в эмулятор</a></p>
+<p><strong>Пример 3</strong>.<strong> А={a,b}</strong>. Добавить в конец <strong>P</strong> символ <strong>а</strong>. (Например, из <strong>abb </strong>получить <br /><strong>abba</strong>).<br /> <a onclick="LoadAlg ('*abb', '*a-&gt;a*\n*b-&gt;b*\na*=&gt;aa\nb*=&gt;ba\n-&gt;*');">загрузить решение в эмулятор</a></p>
+<p><strong>Пример 4</strong>. <strong>А={a,b,c}</strong>, требуется удвоить последнее вхождение <strong>а</strong> в <strong>P</strong>. Если <strong>а</strong> в <strong>Р</strong> не входит, не менять <strong>Р</strong>.<br /> <a onclick="LoadAlg ('baacac', '*a-&gt;a*\n*b-&gt;b*\n*c-&gt;c*\n*-&gt;@\nb@-&gt;@b\nc@-&gt;@c\na@=&gt;aa\n@=&gt;\n-&gt;*');">загрузить решение в эмулятор</a></p>
+<p><strong>Пример 5</strong>. Записать слово в алфавите <strong>{a,b}</strong> в обратном порядке (например, из <strong>aababb</strong> получить <strong>bbabaa</strong>.<br /> <a onclick="LoadAlg ('aababb', 'aA-&gt;Aa\nbA-&gt;Ab\nA-&gt;a\naB-&gt;Ba\nbB-&gt;Bb\nB-&gt;b\n*a-&gt;A*\n*b-&gt;B*\n*=&gt;\n-&gt;*');">загрузить решение в эмулятор</a></p>
+<p><strong>Замечание 1</strong>: особенность нормальных алгорифмов — использование дополнительных символов алфавита для управления порядком подстановок.</p>
+<p><strong>Замечание 2</strong>: пара «схема НАМ+входное слово» однозначно опрделяет выходное слово.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
