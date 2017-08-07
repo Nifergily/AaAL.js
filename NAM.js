@@ -126,12 +126,13 @@ function run()
     let executionCount = 0;
     let Applicable     = true;
 
-    document.getElementById("ErrorMsg").value = "";
+    let errorMessage = document.getElementById("ErrorMsg");
+    errorMessage.value = "";
     while (runOnce() && (executionCount < maxExecutions)) { ++executionCount; }
     if (executionCount == maxExecutions)
-        document.getElementById("ErrorMsg").value += "Превышено время выполнения.\n";
+        errorMessage.value += "Превышено время выполнения.\n";
     else
-        document.getElementById("ErrorMsg").value += "Выполнение завершено.\n";
+        errorMessage.value += "Выполнение завершено.\n";
 }
 
 function makeStep()
