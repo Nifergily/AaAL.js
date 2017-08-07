@@ -75,7 +75,7 @@ function runOnce()
         if (0 < rule.length)
         {
             if (rule.indexOf ("->") < 0 && rule.indexOf ("=>") < 0)
-                document.getElementById("ErrorMsg").innerHTML += (i + 1) + ": пропущен знак правила.\n";
+                document.getElementById("ErrorMsg").value += (i + 1) + ": пропущен знак правила.\n";
             else
             {
                 rules[R] = rule;
@@ -83,7 +83,7 @@ function runOnce()
             }
         }
         else
-            document.getElementById("ErrorMsg").innerHTML += (i + 1) + ": пустая строка.\n";
+            document.getElementById("ErrorMsg").value += (i + 1) + ": пустая строка.\n";
     }
 
     i = 0;
@@ -126,20 +126,20 @@ function run()
     let executionCount = 0;
     let Applicable     = true;
 
-    document.getElementById("ErrorMsg").innerHTML = "";
+    document.getElementById("ErrorMsg").value = "";
     while (runOnce() && (executionCount < maxExecutions)) { ++executionCount; }
     if (executionCount == maxExecutions)
-        document.getElementById("ErrorMsg").innerHTML += "Превышено время выполнения.\n";
+        document.getElementById("ErrorMsg").value += "Превышено время выполнения.\n";
     else
-        document.getElementById("ErrorMsg").innerHTML += "Выполнение завершено.\n";
+        document.getElementById("ErrorMsg").value += "Выполнение завершено.\n";
 }
 
 function makeStep()
 {
     let errorMessage = document.getElementById("ErrorMsg");
     if (r = runOnce())
-        errorMessage.innerHTML += "Правило " + r + " применено.\n";
+        errorMessage.value += "Правило " + r + " применено.\n";
     else
-        errorMessage.innerHTML = "Ни одно правило не применено, либо выполнено терминальное правило.\n";
+        errorMessage.value = "Ни одно правило не применено, либо выполнено терминальное правило.\n";
 }
 
