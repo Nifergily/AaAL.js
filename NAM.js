@@ -72,18 +72,18 @@ function runOnce()
             c = tmp.substr(j, 1);
             if (c != " " && c != "\t") rule += c;
         }
-        if (0 < rule.length)
+        if (0 >= rule.length)
         {
-            if (rule.indexOf ("->") < 0 && rule.indexOf ("=>") < 0)
-                document.getElementById("ErrorMsg").value += (i + 1) + ": пропущен знак правила.\n";
-            else
-            {
-                rules[R] = rule;
-                ++R;
-            }
-        }
-        else
             document.getElementById("ErrorMsg").value += (i + 1) + ": пустая строка.\n";
+            continue;
+        }
+        if (rule.indexOf ("->") < 0 && rule.indexOf ("=>") < 0)
+        {
+            document.getElementById("ErrorMsg").value += (i + 1) + ": пропущен знак правила.\n";
+            continue;
+        }
+        rules[R] = rule;
+        ++R;
     }
 
     i = 0;
@@ -131,16 +131,32 @@ function run()
     while (runOnce() && (executionCount < maxExecutions)) { ++executionCount; }
     if (executionCount == maxExecutions)
         errorMessage.value += "Превышено время выполнения.\n";
-    else
-        errorMessage.value += "Выполнение завершено.\n";
+    else {
+        errorMessage.value += `Выполнение завершено за ${executionCount} ${rudecline_2h_cnum(executionCount, "шаг")}.\n`;
+    }
 }
 
 function makeStep()
 {
     let errorMessage = document.getElementById("ErrorMsg");
     if (r = runOnce())
-        errorMessage.value += "Правило " + r + " применено.\n";
+        errorMessage.value += "Применено правило №" + r + ".\n";
     else
         errorMessage.value = "Ни одно правило не применено, либо выполнено терминальное правило.\n";
 }
 
+function rudecline_2h_cnum(number, word)
+{
+    number %= 100;
+    if ((number >= 10) && (number < 20)) return word + "ов";
+    switch (number % 10) {
+        case 1:
+            return word;
+        case 2:
+        case 3:
+        case 4:
+            return word + "а";
+        default:
+            return word + "ов";
+    }
+}
