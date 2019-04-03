@@ -32,6 +32,10 @@
                 Шагов — не более 1000.
             </td>
             <td align="left">
+            <p><strong>Замечание 1</strong>: особенность нормальных алгорифмов — использование дополнительных символов алфавита для управления порядком подстановок.</p>
+            <p><strong>Замечание 2</strong>: пара «схема НАМ+входное слово» однозначно опрeделяет выходное слово.</p>
+		    <details>
+			    <summary> Примеры </summary>
             <p>
                 <strong>Пример 1</strong>.
                 В произвольном слове <strong>P</strong>, состоящем из букв алфавита <strong>A=<span class="Serif">{<i>a</i>, <i>b</i>, <i>c</i>}</span></strong>, все подряд стоящие одинаковые буквы заменить одной буквой (например, слово «<strong>abbbcaa</strong>» преобразовать в «<strong>abca</strong>»).
@@ -65,8 +69,31 @@
                 <br />
                 <button onclick="loadAlg('aababb', 'aA-&gt;Aa\nbA-&gt;Ab\nA-&gt;a\naB-&gt;Ba\nbB-&gt;Bb\nB-&gt;b\n*a-&gt;A*\n*b-&gt;B*\n*=&gt;\n-&gt;*');">загрузить решение в эмулятор</button>
             </p>
-            <p><strong>Замечание 1</strong>: особенность нормальных алгорифмов — использование дополнительных символов алфавита для управления порядком подстановок.</p>
-            <p><strong>Замечание 2</strong>: пара «схема НАМ+входное слово» однозначно опрeделяет выходное слово.</p>
+	   
+	          </details>
+		  <p> </p>
+		    <details>
+			    <summary>Задачи</summary>
+			    <p>   </p><details>
+				    <summary><strong>1.</strong>Входит ли буква 'a' в слово.</summary>
+				    <p>  Алфавит - <strong>{a,b,c}</strong>. Если буква '<strong>a</strong>' входит в слово, то выдать 'a', иначе выдать пустое слово.
+				    <br />
+                <button onclick="loadAlg('abc', 'b-&gt;\nc-&gt;\naa-&gt;a');">загрузить решение в эмулятор</button>
+					</p>
+				      </details>
+			    <p>  </p> <details>
+			            <summary><strong>2.</strong>Удвоение каждой буквы</summary>
+				    <p> Алфавит - <strong>{a,b,c}</strong>. Удвоить каждую букву в слове.
+				    <br />
+                <button onclick="loadAlg('abc', '*a-&gt;aa*\n*b-&gt;bb*\n*c-&gt;cc*\n*=&gt;\n-&gt;*');">загрузить решение в эмулятор</button>
+		                      </details>
+                            <p>  </p> <details>
+			            <summary><strong>3.</strong>Перевод числа из четверичной системы счисления в двоичную. </summary>
+				    <p> Алфавит - <strong>{0,1,2,3}</strong>. Перевести число из четверичной системы счисления в двоичную.
+				    <br />
+                <button onclick="loadAlg('3210', '*0-&gt;00*\n*1-&gt;01*\n*2-&gt;10*\n*3-&gt;11*\n*-&gt;\n#0=&gt;\n#=&gt;\n-&gt;#*');">загрузить решение в эмулятор</button>
+		                      </details>
+		    </details>
             </td>
         </tr>
     </tbody>
