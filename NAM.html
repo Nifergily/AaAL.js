@@ -4,6 +4,24 @@
     <meta charset="utf-8" />
     <title>Нормальные алгорифмы Маркова</title>
     <script src="NAM.js" type="text/javascript" defer></script>
+	<script src = "NAMex.js" type="text/javascript" defer></script>
+	<style>
+		#T {
+			position: fixed;
+			left: 315px;
+			top:  170px;
+		}
+		#ComboBox {
+			position: fixed;
+			left: 955px;
+			top:  200px;
+		}
+		#LoadSol {
+			position: fixed;
+			left: 955px;
+			top:  250px;
+		}
+	</style>
 </head>
 <body>
     <h1>Нормальные алгорифмы Маркова</h1>
@@ -34,207 +52,28 @@
             <td align="left">
             <p><strong>Замечание 1</strong>: особенность нормальных алгорифмов — использование дополнительных символов алфавита для управления порядком подстановок.</p>
             <p><strong>Замечание 2</strong>: пара «схема НАМ+входное слово» однозначно опрeделяет выходное слово.</p>
-		    <details>
-			    <summary> Примеры </summary>
-            <p>
-                <strong>Пример 1</strong>.
-                В произвольном слове <strong>P</strong>, состоящем из букв алфавита <strong>A=<span class="Serif">{<i>a</i>, <i>b</i>, <i>c</i>}</span></strong>, все подряд стоящие одинаковые буквы заменить одной буквой (например, слово «<strong>abbbcaa</strong>» преобразовать в «<strong>abca</strong>»).
-                <br />
-                <button onclick="loadAlg('abbbcaa', 'aa-&gt;a\nbb-&gt;b\ncc-&gt;c');">загрузить решение в эмулятор</button>
-            </p>
-            <p>
-                <strong>Пример 2</strong>.
-                <strong>А={a,b,*}</strong>, <strong>P = *Q</strong>, где <strong>Q</strong> – произвольное слово из алфавита <strong>{a,b}</strong>.
-                Получить <strong>Q*</strong> (переставить <strong>*</strong> в конец слова).
-                <br />
-                <button onclick="loadAlg('*abaab', '*a-&gt;a*\n*b-&gt;b*');">загрузить решение в эмулятор</button>
-            </p>
-            <p>
-                <strong>Пример 3</strong>.
-                <strong>А={a,b}</strong>. Добавить в конец <strong>P</strong> символ <strong>а</strong>.
-                (Например, из <strong>abb</strong> получить <strong>abba</strong>).
-                <br />
-                <button onclick="loadAlg('*abb', '*a-&gt;a*\n*b-&gt;b*\na*=&gt;aa\nb*=&gt;ba\n-&gt;*');">загрузить решение в эмулятор</button>
-            </p>
-            <p>
-                <strong>Пример 4</strong>.
-                <strong>А={a,b,c}</strong>, требуется удвоить последнее вхождение <strong>а</strong> в <strong>P</strong>.
-                Если <strong>а</strong> в <strong>Р</strong> не входит, не менять <strong>Р</strong>.
-                <br />
-                <button onclick="loadAlg('baacac', '*a-&gt;a*\n*b-&gt;b*\n*c-&gt;c*\n*-&gt;@\nb@-&gt;@b\nc@-&gt;@c\na@=&gt;aa\n@=&gt;\n-&gt;*');">загрузить решение в эмулятор</button>
-            </p>
-            <p>
-                <strong>Пример 5</strong>.
-                Записать слово в алфавите <strong>{a,b}</strong> в обратном порядке (например, из <strong>aababb</strong> получить <strong>bbabaa</strong>.
-                <br />
-                <button onclick="loadAlg('aababb', 'aA-&gt;Aa\nbA-&gt;Ab\nA-&gt;a\naB-&gt;Ba\nbB-&gt;Bb\nB-&gt;b\n*a-&gt;A*\n*b-&gt;B*\n*=&gt;\n-&gt;*');">загрузить решение в эмулятор</button>
-            </p>
-	   
-	          </details>
-		  <p> </p>
-		    <details>
-			    <summary>Задачи</summary>
-			    <p>   </p><details>
-				    <summary><strong>1.</strong>Входит ли буква 'a' в слово.</summary>
-				    <p>  Алфавит - <strong>{a,b,c}</strong>. Если буква '<strong>a</strong>' входит в слово, то выдать 'a', иначе выдать пустое слово.
-				    <br />
-           <button onclick="loadAlg('abc', 'b-&gt;\nc-&gt;\naa-&gt;a');">загрузить решение в эмулятор</button>
-					</p>
-				      </details>
-
-			    <p>  </p> <details>
-			            <summary><strong>2.</strong>Удвоение каждой буквы</summary>
-				    <p> Алфавит - <strong>{a,b,c}</strong>. Удвоить каждую букву в слове.
-				    <br />
-           <button onclick="loadAlg('abc', '*a-&gt;aa*\n*b-&gt;bb*\n*c-&gt;cc*\n*=&gt;\n-&gt;*');">загрузить решение в эмулятор</button>
-		                      </details>
-
-                            <p>  </p> <details>
-			            <summary><strong>3.</strong>Перевод числа из четверичной системы счисления в двоичную. </summary>
-				    <p> Алфавит - <strong>{0,1,2,3}</strong>. Перевести число из четверичной системы счисления в двоичную.
-				    <br />
-           <button onclick="loadAlg('3210', '*0-&gt;00*\n*1-&gt;01*\n*2-&gt;10*\n*3-&gt;11*\n*-&gt;\n#0=&gt;\n#=&gt;\n-&gt;#*');">загрузить решение в эмулятор</button>
-			             </details>
-
-			   <p>   </p><details>
-				    <summary><strong>4.</strong>Удаление первой буквы</summary>
-				    <p> Алфавит - <strong>{a,b,c}</strong>. Если слово непустое, то удалить его первую букву; в противном случае оставить пустое слово.
-                                    <br />  
-           <button onclick="loadAlg('abc', '*a=&gt;\n*b=&gt;\n*c=&gt;\n*=&gt;\n-&gt;*');">загрузить решение в эмулятор</button> 
-  				    </details>
- 
-			   <p>   </p><details>
-				    <summary><strong>5.</strong>Прибавление единицы к троичному числу</summary>
-				    <p>Алфавит - <strong>{0,1,2}</strong>. Прибавить единицу к троичному числу.
-				    <br />
-           <button onclick="loadAlg('201', '0#=&gt;1\n1#=&gt;2\n2#-&gt;#0\n#=&gt;1\n*0-&gt;0*\n*1-&gt;1*\n*2-&gt;2*\n*-&gt;#\n-&gt;*');">загрузить решение в эмулятор</button>  
-			            </details>
-
-	                   <p>   </p><details>
-				    <summary><strong>6.</strong>Перевод числа из единичной системы счисления в троичную</summary>
-				    <p>Алфавит - <strong>{|,0,1,2}</strong>. Перевести число из единичной системы счисления в троичную. 
-				    <br />
-           <button onclick="loadAlg('||||', '2#-&gt;#0\n1#-&gt;2\n0#-&gt;1\n#-&gt;1\n*|-&gt;#*\n*=&gt;\n-&gt;0*');">загрузить решение в эмулятор</button> 
-          			
-			            </details>
-
-			   <p>   </p><details> 
-				    <summary><strong>7.</strong>Раcположение вначале всех букв 'a', затем всех букв 'b', а затем всех букв 'c'</summary>
-				    <p>Алфавит - <strong>{a,b,c}</strong>. Переставить буквы в слове так, чтобы вначале располагались буквы 'a', затем буквы 'b', a затем буквы 'c'.
-				    <br />
-           <button onclick="loadAlg('ccbabacab', 'ba-&gt;ab\ncb-&gt;bc\nca-&gt;ac');">загрузить решение в эмулятор</button> 
-		                    </details>
- 
-		           <p>   </p><details>
-				    <summary><strong>8.</strong>Содержит ли слово равное количество букв 'a' и 'b'</summary>
-				    <p>Алфавит - <strong>{a,b}</strong>. Если слово содержит равное количество букв 'a' и 'b', то выдать пустое слово, иначе выдать любое непустое слово.
-				    <br />
-           <button onclick="loadAlg('aabbab', 'ab-&gt;\nba-&gt;');">загрузить решение в эмулятор</button>
-			            </details>
- 
-		           <p>   </p><details>
-				    <summary><strong>9.</strong>Удаление правой половины слова</summary>
-				    <p>Алфавит - <strong>{a,b}</strong>. Слово имеет четную длину. Удалить его правую половину.  
-				    <br />
-           <button onclick="loadAlg('babaabab', '#a-&gt;a#\n#b-&gt;b#\na#-&gt;\nb#-&gt;\n*b-&gt;b*#\n*a-&gt;a*#\n*=&gt;\n-&gt;*');">загрузить решение в эмулятор</button>   
-			            </details>
- 
-			   <p>   </p><details>
-				    <summary><strong>10.</strong>Удвоение слова через знак '='</summary>
-				    <p>Алфавит - <strong>{a,b,=}</strong>. Удвоить слово через знак '='.
-				    <br />
-           <button onclick="loadAlg('abab', 'ac-&gt;ca\nad-&gt;da\nbc-&gt;cb\nbd-&gt;db\n=c-&gt;a=\n=d-&gt;b=\n*a-&gt;ca*\n*b-&gt;db*\n*=&gt;\n-&gt;=*');">загрузить решение в эмулятор</button> 
-			            </details>
- 
-	                   <p>   </p><details>
-				    <summary><strong>11.</strong>Перевод числа из двоичной системы счисления в четверичную</summary>
-				    <p>Алфавит - <strong>{0,1,2,3}</strong>. Перевести двоичное число в четверичное.
-				    <br />
-           <button onclick="loadAlg('101', '00#-&gt;#0\n01#-&gt;#1\n10#-&gt;#2\n11#-&gt;#3\n0#=&gt;0\n1#=&gt;1\n#=&gt;\n*1-&gt;1*\n*0-&gt;0*\n*-&gt;#\n-&gt;*');">загрузить решение в эмулятор</button> 
-			            </details>
-
-		           <p>   </p><details>
-				    <summary><strong>12.</strong>Удаление незначащих нулей</summary>
-				    <p>Алфавит - <strong>{0,1,2}</strong>. Удалить из числа(троичная система) незначащие нули.
-				    <br />
-           <button onclick="loadAlg('00021012', '*00-&gt;*0\n*01=&gt;1\n*02=&gt;2\n*=&gt;\n-&gt;*');">загрузить решение в эмулятор</button>  
-			            </details>
- 
-                          <p>   </p><details>
-				   <summary><strong>13.</strong>Перевод числа из троичной системы счисления в единичную</summary>
-				   <p>Алфавит - <strong>{0,1,2,|}</strong>. Перевести число из троичной системы счисления в единичную.
-				   <br />
-          <button onclick="loadAlg('21', '|0-&gt;0|||\n1-&gt;0|\n2-&gt;0||\n0-&gt;');">загрузить решение в эмулятор</button>     
-			           </details>
- 
-		          <p>   </p><details>
-				   <summary><strong>14.</strong>Слово abba</summary>
-				   <p>Алфавит - <strong>{a,b}</strong>. Если исходное слово - 'abba', то выдать букву 'a', иначе выдать пустое слово.
-				   <br />
-          <button onclick="loadAlg('abba', '#a-&gt;a#\n#b-&gt;b#\n*abba#=&gt;a\n#-&gt;\n*a-&gt;*\n*b-&gt;*\n*=&gt;\n-&gt;*#');">загрузить решение в эмулятор</button> 
-			           </details>
- 
-	                  <p>   </p><details>
-				   <summary><strong>15.</strong>Умножение троичного числа на 2</summary>
-				   <p>Алфавит - <strong>{0,1,2}</strong>. Умножить троичное число на 2.
-				   <br />
-          <button onclick="loadAlg('210', '0#-&gt;#0\n1#-&gt;#2\n2#-&gt;^1\n#=&gt;\n0^-&gt;#1\n1^-&gt;^0\n2^-&gt;^2\n^=&gt;1\n*0-&gt;0*\n*1-&gt;1*\n*2-&gt;2*\n*-&gt;#\n-&gt;*');">загрузить решение в эмулятор</button>  
-			           </details>
- 
-                          <p>   </p><details>
-				   <summary><strong>16.</strong>Деление троичного числа на 2</summary>
-				   <p>Алфавит - <strong>{0,1,2}</strong>. Поделить троичное число нацело на 2.
-				   <br />
-          <button onclick="loadAlg('112', '#0-&gt;1#\n#1-&gt;2*\n#2-&gt;2#\n#-&gt;\n*0-&gt;0*\n*1-&gt;0#\n*2-&gt;1*\n*-&gt;\n^01=&gt;1\n^02=&gt;2\n^=&gt;\n-&gt;^*');">загрузить решение в эмулятор</button>
-			           </details>
-
-	                  <p>   </p><details>
-      				   <summary><strong>17.</strong>Переворот слова</summary>
-				   <p>Алфавит - <strong>{a,b}</strong>. Перевернуть слово.
-				   <br />
-          <button onclick="loadAlg('bababa', 'ac-&gt;ca\nad-&gt;da\nbc-&gt;cb\nbd-&gt;db\nc-&gt;a\nd-&gt;b\n*a-&gt;c*\n*b-&gt;d*\n*=&gt;\n-&gt;*');">загрузить решение в эмулятор</button>  
-			           </details>
- 
-		          <p>   </p><details>
-				   <summary><strong>18.</strong>Сложение двух троичных чисел</summary>
-				   <p>Алфавит - <strong>{0,1,2,+}</strong>. Сложить два троичных числа. 
-				   <br />
-          <button onclick="loadAlg('210+112', '*0-&gt;0*\n*1-&gt;1*\n*2-&gt;2*\n*-&gt;!\n2!-&gt;1\n1!-&gt;0\n0!-&gt;!2\n!-&gt;^\n^2-&gt;^\n#+^=&gt;\n0#-&gt;1\n1#-&gt;2\n2#-&gt;#0\n#-&gt;1\n+-&gt;#+*');">загрузить решение в эмулятор</button> 
-			           </details>
- 
-		          <p>   </p><details>
-				   <summary><strong>19.</strong>Умножение в единичной системе счисления</summary>
-				   <p>Алфавит - <strong>{|,*}</strong>. Перемножить 2 числа, записанных в единичной системе счисления.
-                                   </br >
-          <button onclick="loadAlg('||*|||', '^|-&gt;|^#\n^#-&gt;#^\n^-&gt;\n||*-&gt;|*^\n|*-&gt;\n#-&gt;|');">загрузить решение в эмулятор</button>   
-			           </details>
- 
-			  <p>   </p><details>
-				   <summary><strong>20.</strong>Баланс скобок</summary>
-				   <p>Алфавит - <strong>{(,a,)}</strong>. Если слово сбалансировано относительно скобок, то выдать пару скобок (), а в противном случае выдать пустое слово.
-				   <br />
-          <button onclick="loadAlg('((a)(a))', 'a-&gt;\n()-&gt;\n(-&gt;)\n))-&gt;)\n)=&gt;\n=&gt;()');">загрузить решение в эмулятор</button> 
-			           </details>
-
-	                  <p>   </p><details>
-				   <summary><strong>21.</strong>Вычитание двух троичных чисел</summary>
-				   <p>Алфавит - <strong>{0,1,2,-}</strong>. Вычесть из первого троичного числа второе (считается, что второе число не больше первого).
-				   <br />
-          <button onclick="loadAlg('210-112', '*0-&gt;0*\n*1-&gt;1*\n*2-&gt;2*\n*-&gt;!\n2!-&gt;1\n1!-&gt;0\n0!-&gt;!2\n!-&gt;^\n^2-&gt;^\n#-^-&gt;\n0#-&gt;#2\n1#-&gt;0\n2#-&gt;1\n--&gt;#-*\n&00-&gt;&0\n&01=&gt;1\n&02=&gt;2\n&=&gt;\n-&gt;&');">загрузить решение в эмулятор</button>   
-			           </details>
- 
-	                  <p>   </p><details>
-				   <summary><strong>22.</strong>Нахождение остатка от деления в единичной системе счисления</summary>
-				   <p>Алфавит - <strong>{|,:}</strong>. Даны 2 числа в единичной системе счисления. Найти остаток от деления первого числа на второе.
-				   <br />
-          <button onclick="loadAlg('|||||:|||', '*|-&gt;#|*\n*-&gt;\n|#-&gt;#|\n|:#-&gt;:\n:#-&gt;#\n#|-&gt;\n:-&gt;:*');">загрузить решение в эмулятор</button> 
-			           </details>
-
-		    </details>
             </td>
         </tr>
     </tbody>
     </table>
+	<select id="ComboBox">
+		<option selected disabled>Выберите задачу</option>
+		<option onclick="ExNum = 0;LoadExTxt();cleanAdd()">1. Входит ли буква 'a' в слово.</option>
+		<option onclick="ExNum = 1;LoadExTxt();cleanAdd()">2. Удвоение каждой буквы</option>
+		<option onclick="ExNum = 2;LoadExTxt();cleanAdd()">3. Перевод числа из четверичной системы счисления в двоичную.</option>
+		<option onclick="ExNum = 3;LoadExTxt();cleanAdd()">4. Удаление первой буквы</option>
+	</select>
+
+	<table id="T" border="1">
+		<caption>Текст Задачи</caption>
+		<tr>
+			<td id="ExTxt" height="75px" width="600px" ></td>
+		</tr>
+		<tr>
+			<td id="ExAdd" height="75px" width="600px" ></td>
+		</tr>
+	</table>
+	<button id="LoadSol" onclick="LoadExAdd();loadAlg(ExAnsWord[ExNum], ExAns[ExNum]);">Загрузить решение в эмулятор</button>
     </body>
 </html>
 
