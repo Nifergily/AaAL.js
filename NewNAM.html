@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Нормальные алгорифмы Маркова</title>
+    <script src="NAM.js" type="text/javascript" defer></script>
+    <script src = "NAMex.js" type="text/javascript" defer></script>
+    <style>
+        #CodeArea {
+            resize: unset;
+        }
+        #ErrorMsg {
+            resize: unset;
+        }
+    </style>
+</head>
+<body>
+    <h1 >Нормальные алгорифмы Маркова</h1>
+    <table border="0" width="100%">
+        <tbody>
+        <tr>
+            <td width="20%">
+                Входное (выходное) слово:<br />
+                <input id="Word" type="text"/>
+                <br />
+                Правила (не более 32):
+            </td>
+            <td width="60%">
+                <p><strong>Замечание 1</strong>: особенность нормальных алгорифмов — использование дополнительных символов алфавита для управления порядком подстановок.</p>
+            </td>
+            <td width="20%"><p><strong>Замечание 2</strong>: пара «схема НАМ+входное слово» однозначно опрeделяет выходное слово.</p></td>
+        </tr>
+
+        <tr>
+            <td width="20%">
+                <table style="border: 1px; border-style: solid;">
+                    <tbody>
+                    <tr valign="top">
+                        <td><textarea id="CodeArea" rows="20" cols="15" ></textarea></td>
+                        <td id="ParsedCode" align="left" width="125px"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td id="ExText">
+                <p>Текст Задачи:</p>
+                <p>Алфавит - <strong>{0,1,2,3}</strong>. Перевести число из четверичной системы счисления в двоичную.</p>
+                <br />
+                <details>
+                    <summary>Пояснение к задаче</summary>
+                    <p>1. Ставим \'#*\' слева от слова (правило 8), причем \'#\' необходим для удаления возможного незначащего нуля.<p/>
+                    <p>2. Гоним \'*\' через слово слева направо, заменяя каждую четверичную цифру на две двоичные цифры (правила 1,2,3 и 4).<p/>
+                    <p>3. По исчерпании цифр удаляем \'*\' (правило 5), удаляем незначащий ноль, который появляется, если левая четверичная цифра - 1 (правило 6) и,
+                        наконец, удаляем \'#\' (правило 7).</p>
+                </details>
+                <br />
+                <button id="LoadSol">Загрузить решение в эмулятор</button>
+            </td>
+            <td>
+                <select size="15" multiple >
+                    <option selected disabled>Выберите задачу</option>
+                    <option id="Ex1">1. Входит ли буква 'a' в слово.</option>
+                    <option id="Ex2">2. Удвоение каждой буквы</option>
+                    <option id="Ex3">3. Перевод числа из четверичной системы счисления в двоичную.</option>
+                    <option id="Ex4">4. Удаление первой буквы</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input class="ef" value="Шаг" type="button" />
+                <input class="ef" value="Запуск" type="button" />
+                <br />
+                <p>Шагов — не более 1000.</p>
+            </td>
+            <td>
+                <textarea id="ErrorMsg" readonly="readonly" cols="96" rows="6"></textarea>
+            </td>
+            <td></td>
+
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

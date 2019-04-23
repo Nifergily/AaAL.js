@@ -1,4 +1,4 @@
-let ExNum;
+let ExNum, AnsWord, Ans;
 
 function cleanAdd() {
     document.getElementById('ExAdd').innerHTML = '<td id="ExAdd" height="125px" width="600px"></td>';
@@ -12,6 +12,11 @@ function LoadExAdd() {
     document.getElementById('ExAdd').innerHTML = adds[ExNum];
 }
 
+function splitAns(answ) {
+    AnsWord = answ.slice(0, answ.indexOf(' '));
+    Ans = answ.slice(answ.indexOf(' ') + 1, answ.length);
+}
+
 let exercises = [
     'Алфавит - <strong>{a,b,c}</strong>. Если буква \'a\' входит в слово, то выдать \'a\', иначе выдать пустое слово.',
     'Алфавит - <strong>{a,b,c}</strong>. Удвоить каждую букву в слове.',
@@ -21,17 +26,14 @@ let exercises = [
 
 
 let ExAns = [
-    'b->\nc->\naa->a',
-    '*a->aa*\n*b->bb*\n*c->cc*\n*=>\n->*',
-    '*0->00*\n*1->01*\n*2->10*\n*3->11*\n*->\n#0=>\n#=>\n->#*',
-    '*a=>\n*b=>\n*c=>\n*=>\n->*'
-];
+    'abc b->\nc->\naa->a',
+    'abc *a->aa*\n*b->bb*\n*c->cc*\n*=>\n->*',
+    '3210 *0->00*\n*1->01*\n*2->10*\n*3->11*\n*->\n#0=>\n#=>\n->#*',
+    'abc *a=>\n*b=>\n*c=>\n*=>\n->*',
+    '201 0#=>1\n1#=>2\n2#->#0\n#=>1\n*0->0*\n*1->1*\n*2->2*\n*->#\n->*',
+    '|||| 2#->#0\n1#->2\n0#->1\n#->1\n*|->#*\n*=>\n->0*',
+    'ccbabacab ba->ab\ncb->bc\nca->ac',
 
-let ExAnsWord = [
-    'abc',
-    'abc',
-    '3210',
-    'abc'
 ];
 
 let adds = [

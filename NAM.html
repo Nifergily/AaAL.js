@@ -56,7 +56,7 @@
         </tr>
     </tbody>
     </table>
-	<select id="ComboBox">
+	<select id="ComboBox" >
 		<option selected disabled>Выберите задачу</option>
 		<option onclick="ExNum = 0;LoadExTxt();cleanAdd()">1. Входит ли буква 'a' в слово.</option>
 		<option onclick="ExNum = 1;LoadExTxt();cleanAdd()">2. Удвоение каждой буквы</option>
@@ -67,13 +67,13 @@
 	<table id="T" border="1">
 		<caption>Текст Задачи</caption>
 		<tr>
-			<td id="ExTxt" height="75px" width="600px" ></td>
+			<td id="ExTxt" height="75px" width="625px" ></td>
 		</tr>
 		<tr>
-			<td id="ExAdd" height="75px" width="600px" ></td>
+			<td id="ExAdd" height="75px" width="625px" ></td>
 		</tr>
 	</table>
-	<button id="LoadSol" onclick="LoadExAdd();loadAlg(ExAnsWord[ExNum], ExAns[ExNum]);">Загрузить решение в эмулятор</button>
+	<button id="LoadSol" onclick="LoadExAdd();splitAns(ExAns[ExNum]);loadAlg(AnsWord, Ans);">Загрузить решение в эмулятор</button>
     </body>
 </html>
 
