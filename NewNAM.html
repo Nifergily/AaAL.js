@@ -8,15 +8,29 @@
     <style>
         #CodeArea {
             resize: unset;
+            overflow-x: auto;
         }
         #ErrorMsg {
             resize: unset;
+        }
+        #div {
+            height: 20em;
+            overflow-y: auto;
+        }
+        #ParsedCode {
+            overflow-y: auto;
+            height: 20em;
+        }
+        #Emu {
+            height: 25em;
+            width: 24em;
+            overflow-y: auto;
         }
     </style>
 </head>
 <body>
     <h1 >Нормальные алгорифмы Маркова</h1>
-    <table border="0" width="100%">
+    <table border="1" width="100%">
         <tbody>
         <tr>
             <td width="20%">
@@ -33,18 +47,19 @@
 
         <tr>
             <td width="20%">
-                <table style="border: 1px; border-style: solid;">
+                <div id="Emu">
+                <table>
                     <tbody>
                     <tr valign="top">
-                        <td><textarea id="CodeArea" rows="20" cols="15" ></textarea></td>
-                        <td id="ParsedCode" align="left" width="125px"></td>
+                        <td><textarea id="CodeArea" wrap="off" rows="25" cols="20"></textarea></td>
+                        <td id="ParsedCode"></td>
                     </tr>
                     </tbody>
-                </table>
+                </table></div>
             </td>
             <td id="ExText">
                 <p>Текст Задачи:</p>
-                <p>Алфавит - <strong>{0,1,2,3}</strong>. Перевести число из четверичной системы счисления в двоичную.</p>
+                <div id="div"><p>Алфавит - <strong>{0,1,2,3}</strong>. Перевести число из четверичной системы счисления в двоичную.</p>
                 <br />
                 <details>
                     <summary>Пояснение к задаче</summary>
@@ -53,24 +68,36 @@
                     <p>3. По исчерпании цифр удаляем \'*\' (правило 5), удаляем незначащий ноль, который появляется, если левая четверичная цифра - 1 (правило 6) и,
                         наконец, удаляем \'#\' (правило 7).</p>
                 </details>
-                <br />
+                    <br /></div>
                 <button id="LoadSol">Загрузить решение в эмулятор</button>
             </td>
             <td>
-                <select size="15" multiple >
+                <select size="18" multiple id="select">
                     <option selected disabled>Выберите задачу</option>
                     <option id="Ex1">1. Входит ли буква 'a' в слово.</option>
                     <option id="Ex2">2. Удвоение каждой буквы</option>
                     <option id="Ex3">3. Перевод числа из четверичной системы счисления в двоичную.</option>
                     <option id="Ex4">4. Удаление первой буквы</option>
+                    <option id="Ex5">5. Прибавление единицы к троичному числу</option>
+                    <option id="Ex6">6. Перевод числа из единичной системы счисления в троичную</option>
+                    <option id="Ex7">7. Раcположение вначале всех букв 'a', затем всех букв 'b', а затем всех букв 'c'</option>
+                    <option id="Ex8">8. Содержит ли слово равное количество букв 'a' и 'b'</option>
+                    <option id="Ex9">9. Удаление правой половины слова</option>
+                    <option id="Ex10">10. Удвоение слова через знак '='</option>
+                    <option id="Ex11">11. Перевод числа из двоичной системы счисления в четверичную</option>
+                    <option id="Ex12">12. Удаление незначащих нулей</option>
+                    <option id="Ex13">13. Перевод числа из троичной системы счисления в единичную</option>
+                    <option id="Ex14">14. Слово abba</option>
+                    <option id="Ex15">15. Умножение троичного числа на 2</option>
+                    <option id="Ex16">16. Деление троичного числа на 2</option>
                 </select>
             </td>
         </tr>
 
         <tr>
             <td>
-                <input class="ef" value="Шаг" type="button" />
-                <input class="ef" value="Запуск" type="button" />
+                <input id="Step" class="ef" value="Шаг" type="button" />
+                <input id="RUN" class="ef" value="Запуск" type="button" />
                 <br />
                 <p>Шагов — не более 1000.</p>
             </td>

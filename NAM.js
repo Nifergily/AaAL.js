@@ -15,6 +15,9 @@ if (!String.prototype.format) {
     };
 }
 
+document.getElementById('Step').addEventListener('click', makeStep);
+document.getElementById('RUN').addEventListener('click', run);
+
 function loadAlg(word, alg)
 {
     document.getElementById("ErrorMsg").innerHTML = "Загружена запись алгоритма.\n";
