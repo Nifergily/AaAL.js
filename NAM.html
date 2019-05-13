@@ -1,79 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <title>Нормальные алгорифмы Маркова</title>
     <script src="NAM.js" type="text/javascript" defer></script>
-	<script src = "NAMex.js" type="text/javascript" defer></script>
-	<style>
-		#T {
-			position: fixed;
-			left: 315px;
-			top:  170px;
-		}
-		#ComboBox {
-			position: fixed;
-			left: 955px;
-			top:  200px;
-		}
-		#LoadSol {
-			position: fixed;
-			left: 955px;
-			top:  250px;
-		}
-	</style>
+    <script src = "NAMex.js" type="text/javascript" defer></script>
+    <style>
+        #CodeArea {
+            resize: unset;
+            overflow-x: auto;
+        }
+        #ErrorMsg {
+            resize: unset;
+        }
+        #div {
+            height: 20em;
+            overflow-y: auto;
+        }
+        #ParsedCode {
+            overflow-y: auto;
+            height: 20em;
+        }
+        #Emu {
+            height: 25em;
+            width: 24em;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Нормальные алгорифмы Маркова</h1>
-    <table>
-    <tbody>
-        <tr valign="top">
-            <td>
+    <h1 >Нормальные алгорифмы Маркова</h1>
+    <table border="1" width="100%">
+        <tbody>
+        <tr>
+            <td width="20%">
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
                 Входное (выходное) слово:<br />
-                <input id="Word" type="text" />
+                <input id="Word" type="text"/>
                 <br />
                 Правила (не более 32):
-                <br />
-                <table style="border: 1px; border-style: solid;">
-                <tbody>
-                    <tr valign="top">
-                        <td><textarea id="CodeArea" rows="20" cols="15"></textarea></td>
-                        <td id="ParsedCode" align="left" width="125px"></td>
-                    </tr>
-                </tbody>
-                </table>
-                <input class="ef" value="Шаг" onclick="makeStep()" type="button" />
-                <input class="ef" value="Запуск" onclick="run()" type="button" />
-                <br />
-                <textarea id="ErrorMsg" readonly="readonly" cols="32"></textarea>
-                <br />
-                Шагов — не более 1000.
             </td>
-            <td align="left">
-            <p><strong>Замечание 1</strong>: особенность нормальных алгорифмов — использование дополнительных символов алфавита для управления порядком подстановок.</p>
-            <p><strong>Замечание 2</strong>: пара «схема НАМ+входное слово» однозначно опрeделяет выходное слово.</p>
+            <td width="50%">
+                <p><strong>Описание синтаксиса:</strong></p>
+                <p><strong>1.</strong> В одну строку вписывается одно правило, написанному по типу </p>
+                <p>"комбинация символов" + "->"/"=>" + "комбинация символов" </p>
+                <p>"->" - обычное правило, "=>" - терминальное, "комбинация символов" также может означать отсутствие символов</p>
+            </td>
+            <td width="30%">
+                <br />
+                <p><strong>2.</strong> Помимо символов алфавита допустимо использование вспомогательных символов, например "*" или "/"</p>
+                <p>Примеры - "a->", "ba=>ab", "->*/", "->"</p>
             </td>
         </tr>
-    </tbody>
+
+        <tr>
+            <td width="20%">
+                <div id="Emu">
+                <table>
+                    <tbody>
+                    <tr valign="top">
+                        <td><textarea id="CodeArea" wrap="off" rows="25" cols="20"></textarea></td>
+                        <td id="ParsedCode"></td>
+                    </tr>
+                    </tbody>
+                </table></div>
+            </td>
+            <td width="50%">
+                <p>Текст Задачи:</p>
+                <div id="div">
+                    <p>Вы не выбрали задачу</p>
+                </div>
+                <button id="LoadSol">Загрузить решение в эмулятор</button>
+            </td>
+            <td width="30%">
+                <select size="20" multiple id="select">
+                    <option selected disabled>Выберите задачу</option>
+                    <option>1. Входит ли буква 'a' в слово.</option>
+                    <option>2. Удвоение каждой буквы</option>
+                    <option>3. Перевод числа из четверичной системы счисления в двоичную.</option>
+                    <option>4. Удаление первой буквы</option>
+                    <option>5. Прибавление единицы к троичному числу</option>
+                    <option>6. Перевод числа из единичной системы счисления в троичную</option>
+                    <option>7. Расположение вначале всех букв 'a', затем всех букв 'b', а затем всех букв 'c'</option>
+                    <option>8. Содержит ли слово равное количество букв 'a' и 'b'</option>
+                    <option>9. Удаление правой половины слова</option>
+                    <option>10. Удвоение слова через знак '='</option>
+                    <option>11. Перевод числа из двоичной системы счисления в четверичную</option>
+                    <option>12. Удаление незначащих нулей</option>
+                    <option>13. Перевод числа из троичной системы счисления в единичную</option>
+                    <option>14. Слово abba</option>
+                    <option>15. Умножение троичного числа на 2</option>
+                    <option>16. Деление троичного числа на 2</option>
+                    <option>17. Переворот слова</option>
+                    <option>18. Сложение двух троичных чисел</option>
+                    <option>19. Умножение в единичной системе счисления</option>
+                    <option>20. Баланс скобок</option>
+                    <option>21. Вычитание двух троичных чисел</option>
+                    <option>22. Нахождение остатка от деления в единичной системе счисления</option>
+                    <option>23. Применимость только к пустому слову</option>
+                    <option>24. Применимость к непустым словам</option>
+                    <option>25. Применимость к словам четной длины</option>
+                    <option>26. Применимость к словам нечетной длины</option>
+                    <option>27. Применимость к непустым словам четной длины</option>
+                    <option>28. Применимость к словам содержащим букву 'a' и четное количество букв 'b'</option>
+                    <option>29. Применимость к словам содержащим букву 'a' или четное количество букв 'b'</option>
+                    <option>30. Применимость к словам содержащим определённое количество букв'a' и 'b'</option>
+                    <option>31. Применимость к словам содержащим определённое количество букв'a' или 'b'</option>
+                    <option>32. Применимость к словам длины 3, 9, 15, 21 и т.д.</option>
+                    <option>33. Применимость к любому слову кроме 'aba'</option>
+                    <option>34. Применимость только к слову 'aba'</option>
+                    <option>35. Применимость к словам состоящим только из букв 'a' или только 'b'</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td width="20%">
+                <input id="Step" class="ef" value="Шаг" type="button"/>
+                <input id="RUN" class="ef" value="Запуск" type="button" />
+                <br />
+                <p>Шагов — не более 1000.</p>
+            </td>
+            <td width="50%">
+                <textarea id="ErrorMsg" readonly="readonly" cols="96" rows="6"></textarea>
+            </td>
+            <td width="30%">
+                <p>Поиск</p><input id="inp"  />
+            </td>
+
+        </tr>
+        </tbody>
     </table>
-	<select id="ComboBox" >
-		<option selected disabled>Выберите задачу</option>
-		<option onclick="ExNum = 0;LoadExTxt();cleanAdd()">1. Входит ли буква 'a' в слово.</option>
-		<option onclick="ExNum = 1;LoadExTxt();cleanAdd()">2. Удвоение каждой буквы</option>
-		<option onclick="ExNum = 2;LoadExTxt();cleanAdd()">3. Перевод числа из четверичной системы счисления в двоичную.</option>
-		<option onclick="ExNum = 3;LoadExTxt();cleanAdd()">4. Удаление первой буквы</option>
-	</select>
-
-	<table id="T" border="1">
-		<caption>Текст Задачи</caption>
-		<tr>
-			<td id="ExTxt" height="75px" width="625px" ></td>
-		</tr>
-		<tr>
-			<td id="ExAdd" height="75px" width="625px" ></td>
-		</tr>
-	</table>
-	<button id="LoadSol" onclick="LoadExAdd();splitAns(ExAns[ExNum]);loadAlg(AnsWord, Ans);">Загрузить решение в эмулятор</button>
-    </body>
+</body>
 </html>
-
