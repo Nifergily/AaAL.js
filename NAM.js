@@ -36,7 +36,7 @@ function highlightCode(code, line)
         let rule = code[i];
         let pos = rule.indexOf("->");
         let BGCol = " ";
-        if (i == line) BGCol += " style=\"background-color:#c0c0d0;\"";
+        if (i == line) BGCol += " style=\"background-color:red;\"";
 
         if (pos < 0) pos = rule.indexOf( "=>" );
         if (0 <= pos)
@@ -75,12 +75,7 @@ function runOnce()
             c = tmp.substr(j, 1);
             if (c != " " && c != "\t") rule += c;
         }
-        if (0 >= rule.length)
-        {
-            document.getElementById("ErrorMsg").value += (i + 1) + ": пустая строка.\n";
-            continue;
-        }
-        if (rule.indexOf ("->") < 0 && rule.indexOf ("=>") < 0)
+        if (rule.indexOf ("->") < 0 && rule.indexOf ("=>") < 0 && rule.length > 0)
         {
             document.getElementById("ErrorMsg").value += (i + 1) + ": пропущен знак правила.\n";
             continue;

@@ -7,6 +7,21 @@ document.getElementById('LoadSol').addEventListener('click', PreLoadAlg);
 
 document.getElementById('inp').addEventListener('input', search);
 
+document.getElementById('CodeArea').addEventListener('change', removeHallow);
+
+
+
+function removeHallow() {
+    let Code = document.getElementById("CodeArea").value.split(/\n/);
+    let result = "";
+    for (let y = 0; y < Code.length; y++) {
+        if (Code[y] != "") {
+            result += Code[y];
+            result += "\n";
+        }
+    }
+    document.getElementById("CodeArea").value = result;
+}
 
 function search() {
     let word = document.getElementById('inp').value;

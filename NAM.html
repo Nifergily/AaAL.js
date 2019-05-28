@@ -9,9 +9,13 @@
         #CodeArea {
             resize: unset;
             overflow-x: auto;
+            background-color: #94ccd1;
+            border: hidden;
         }
         #ErrorMsg {
             resize: unset;
+            background-color: #94ccd1;
+            border: hidden;
         }
         #div {
             height: 20em;
@@ -28,9 +32,10 @@
         }
     </style>
 </head>
-<body>
+<body background="modern.jpg">
+<font color="#f0f8ff">
     <h1 >Нормальные алгорифмы Маркова</h1>
-    <table border="1" width="100%">
+    <table border="0" width="100%">
         <tbody>
         <tr>
             <td width="20%">
@@ -40,20 +45,38 @@
                 <br />
                 <br />
                 Входное (выходное) слово:<br />
-                <input id="Word" type="text"/>
+                <input id="Word" type="text" style="background-color: #94ccd1"/>
                 <br />
                 Правила (не более 32):
             </td>
             <td width="50%">
                 <p><strong>Описание синтаксиса:</strong></p>
-                <p><strong>1.</strong> В одну строку вписывается одно правило, написанному по типу </p>
-                <p>"комбинация символов" + "->"/"=>" + "комбинация символов" </p>
-                <p>"->" - обычное правило, "=>" - терминальное, "комбинация символов" также может означать отсутствие символов</p>
+                <p><strong>1.</strong> В одну строку вписывается одно правило, написанному по типу:</p>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>&emsp;&emsp;&emsp;</td>
+                        <td>комбинация_символов_1</td>
+                        <td>&nbsp;</td>
+                        <td>-&gt;<br />=&gt;</td>
+                        <td>&nbsp;</td>
+                        <td>комбинация_символов_2</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>&emsp;&nbsp;"-&gt;" - обычное правило &emsp;&emsp; "=&gt;" - терминальное</p>
+                <p>"комбинация символов" также может означать отсутствие символов</p>
             </td>
             <td width="30%">
                 <br />
                 <p><strong>2.</strong> Помимо символов алфавита допустимо использование вспомогательных символов, например "*" или "/"</p>
-                <p>Примеры - "a->", "ba=>ab", "->*/", "->"</p>
+                <p>Примеры:</p>
+                <ul>
+                    <li>a-&gt;</li>
+                    <li>ba=&gt;ab</li>
+                    <li>-&gt;*/</li>
+                    <li>-&gt;</li>
+                </ul>
             </td>
         </tr>
 
@@ -64,7 +87,7 @@
                     <tbody>
                     <tr valign="top">
                         <td><textarea id="CodeArea" wrap="off" rows="25" cols="20"></textarea></td>
-                        <td id="ParsedCode"></td>
+                        <font><td id="ParsedCode"></td>
                     </tr>
                     </tbody>
                 </table></div>
@@ -72,13 +95,14 @@
             <td width="50%">
                 <p>Текст Задачи:</p>
                 <div id="div">
-                    <p>Вы не выбрали задачу</p>
+                    <p style="color: red">&emsp;Вы не выбрали задачу</p>
                 </div>
                 <button id="LoadSol">Загрузить решение в эмулятор</button>
             </td>
             <td width="30%">
-                <select size="20" multiple id="select">
-                    <option selected disabled>Выберите задачу</option>
+                <p>Выберите Задачу</p>
+                <select size="20" multiple id="select" style="background: none; color: #ffffff; border: none; solid-color: red">
+                    <option selected disabled hidden>Выберите задачу</option>
                     <option>1. Входит ли буква 'a' в слово.</option>
                     <option>2. Удвоение каждой буквы</option>
                     <option>3. Перевод числа из четверичной системы счисления в двоичную.</option>
@@ -129,11 +153,12 @@
                 <textarea id="ErrorMsg" readonly="readonly" cols="96" rows="6"></textarea>
             </td>
             <td width="30%">
-                <p>Поиск</p><input id="inp"  />
+                <p>Поиск задач</p><input id="inp"  style="background-color: #94ccd1"/>
             </td>
 
         </tr>
         </tbody>
     </table>
+</font>
 </body>
 </html>
